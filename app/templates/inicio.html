@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<h1 class="mb-1">MediControl</h1>
+<p class="text-muted mb-4">Sistema de gestion de medicos y citas medicas.</p>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body">
+                <h2 class="display-5">{{ total_medicos }}</h2>
+                <p class="card-text">Medicos</p>
+                <a href="{{ url_for('medicos.lista') }}" class="btn btn-outline-success btn-sm">Administrar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body">
+                <h2 class="display-5">{{ total_pacientes }}</h2>
+                <p class="card-text">Pacientes</p>
+                <a href="{{ url_for('pacientes.lista') }}" class="btn btn-outline-success btn-sm">Administrar</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm h-100 text-center">
+            <div class="card-body">
+                <h2 class="display-5">{{ total_citas }}</h2>
+                <p class="card-text">Citas</p>
+                <a href="{{ url_for('citas.lista') }}" class="btn btn-outline-success btn-sm">Administrar</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

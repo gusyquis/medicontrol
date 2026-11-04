@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Editar' if cita else 'Nueva' }} cita{% endblock %}
+
+{% block content %}
+<div class="card col-md-7">
+    <div class="card-header"><h4 class="mb-0">{{ 'Editar' if cita else 'Nueva' }} cita</h4></div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Fecha</label>
+                    <input type="date" name="fecha" class="form-control"
+                           value="{{ cita.fecha.strftime('%Y-%m-%d') if cita else '' }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Hora</label>
+                    <input type="time" name="hora" class="form-control"
+                           value="{{ cita.hora.strftime('%H:%M') if cita else '' }}" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Medico</label>
+                <select name="medico_id" class="form-select" required>
+                    {% for m in medicos %}
+                    <option value="{{ m.id }}" {{ 'selected' if cita and cita.medico_id == m.id }}>{{ m.nombre }} - {{ m.especialidad }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Paciente</label>
+                <select name="paciente_id" class="form-select" required>
+                    {% for p in pacientes %}
+                    <option value="{{ p.id }}" {{ 'selected' if cita and cita.paciente_id == p.id }}>{{ p.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ url_for('citas.lista') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
